@@ -111,7 +111,9 @@ const formatCurrency = function (value, locale, currency) {
 };
 
 const displayMovements = function (acc, sort = false) {
-  const movs = sort?acc.movements.slice().sort((a,b)=>a-b):acc.movements;
+  const movs = sort
+    ? acc.movements.slice().sort((a, b) => a - b)
+    : acc.movements;
   containerMovements.innerHTML = '';
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
@@ -190,7 +192,7 @@ const calcDisplaySummary = function (acc) {
 };
 // Logout Timer
 const startLogoutTimer = function () {
-  let time = 60;
+  let time = 300;
   const timer = setInterval(function () {
     let min = String(Math.floor(time / 60)).padStart(2, 0);
     let sec = String(time % 60).padStart(2, 0);
@@ -230,7 +232,7 @@ btnLogin.addEventListener('click', function (e) {
       hour: 'numeric',
       minute: 'numeric',
       day: 'numeric',
-      month: 'long',
+      month: '2-digit',
       year: 'numeric',
       // weekday : 'long'
     };
@@ -317,10 +319,10 @@ btnClose.addEventListener('click', function (e) {
   inputCloseUsername.value = inputClosePin.value = '';
 });
 let sorted = false;
-btnSort.addEventListener('click', function(e){
+btnSort.addEventListener('click', function (e) {
   e.preventDefault();
-  displayMovements(currentAccount,!sorted);
-  sorted =!sorted;
+  displayMovements(currentAccount, !sorted);
+  sorted = !sorted;
 });
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
